@@ -61,5 +61,5 @@ ENV KEEP_PUNCT=:|.
 ENV ANNOTATIONS_ENTITY_OUTPUT_MODE=dict
 
 # Copy the remaining files
-COPY ./config/models /cat/models/
+COPY ./models /cat/models/
 RUN ls -la /cat/models
