@@ -23,13 +23,6 @@ ENV APP_MODEL_META_PATH_LIST=/cat/models/Status
 ENV APP_BULK_NPROC=16
 ENV APP_TRAINING_MODE=False
 
-# Flask server config
-ENV SERVER_HOST=0.0.0.0
-ENV SERVER_PORT=5000
-ENV SERVER_WORKERS=1
-ENV SERVER_WORKER_TIMEOUT=300
-ENV SERVER_THREADS=16
-
 ENV TYPE=NOT_UMLS
 
 # IMPORTANT : log level set 
@@ -62,4 +55,3 @@ ENV ANNOTATIONS_ENTITY_OUTPUT_MODE=dict
 
 # Copy the remaining files
 COPY ./models /cat/models/
-RUN ls -la /cat/models
