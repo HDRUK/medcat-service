@@ -47,7 +47,7 @@ jobs:
           version: '>= 363.0.0'
 
       - name: 'Use gcloud CLI'
-        run: 'gsutil -m cp -r gs://hdrinnovationgatewaydev_cloudbuild/models .' 
+        run: 'gsutil -m cp -r gs://hdrinnovationgatewaydev/config/medcat/models .' 
 
       - name: Login to GAR
         id: garlogin
