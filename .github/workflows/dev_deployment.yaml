@@ -47,7 +47,7 @@ jobs:
           version: '>= 363.0.0'
 
       - name: 'Use gcloud CLI'
-        run: gsutil -m cp -r '${{ env.BUCKET_PATH }}' .
+        run: gsutil -m cp -r '${{ secrets.BUCKET_PATH }}' .
 
       - name: Login to GAR
         id: garlogin
