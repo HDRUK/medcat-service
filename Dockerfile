@@ -54,4 +54,4 @@ ENV KEEP_PUNCT=:|.
 ENV ANNOTATIONS_ENTITY_OUTPUT_MODE=dict
 
 # Copy the remaining files
-COPY ./models /cat/models/
+COPY /mnt/models /cat/models/

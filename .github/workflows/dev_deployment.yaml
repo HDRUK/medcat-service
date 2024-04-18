@@ -46,7 +46,7 @@ jobs:
           version: '>= 363.0.0'
 
       - name: 'Use gcloud CLI to download the models from google storage bucket'
-        run: gsutil -m cp -r '${{ secrets.BUCKET_PATH }}' .
+        run: sudo gsutil -m cp -r '${{ secrets.BUCKET_PATH }}' /mnt/
 
       - name: Login to GAR
         id: garlogin
