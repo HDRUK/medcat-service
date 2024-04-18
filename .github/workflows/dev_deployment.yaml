@@ -65,6 +65,7 @@ jobs:
           GAR_NAME: ${{ secrets.GAR_NAME }}
           
         run: |
+          df -h
           DOCKER_DATA_ROOT='/mnt/var/lib/docker'
           DOCKER_DAEMON_JSON='/etc/docker/daemon.json'
           sudo mkdir -p "${DOCKER_DATA_ROOT}"
