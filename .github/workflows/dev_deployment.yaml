@@ -4,7 +4,7 @@ run-name: ${{ github.actor }} triggered deploy to DEV pipeline
 on:
   push:
     branches:
-      - 'dev'
+      - 'GAT-3835'
 
 env:
   PROJECT_ID: '${{ secrets.PROJECT_ID }}'
@@ -22,7 +22,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: dev
+          ref: GAT-3835
 
       - name: Read BASE IMAGE VERSION file
         id: getappversion
@@ -46,7 +46,7 @@ jobs:
           version: '>= 363.0.0'
 
       - name: 'Use gcloud CLI to download the models from google storage bucket'
-        run: gsutil -m cp -r '${{ secrets.BUCKET_PATH }}' .
+        run: gsutil -m cp -r '${{ secrets.BUCKET_PATH }}' /mnt/
 
       - name: Login to GAR
         id: garlogin
@@ -80,7 +80,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          ref: dev
+          ref: GAT-3835
 
       - name: Google Auth
         id: auth
