@@ -4,7 +4,7 @@ run-name: ${{ github.actor }} triggered deploy to PROD pipeline
 on:
   push:
     branches:
-      - "preprod"
+      - "prod"
 
 env:
   PROJECT_ID: "${{ secrets.PROJECT_ID }}"
@@ -18,12 +18,12 @@ jobs:
       id-token: write
 
     runs-on: ubuntu-latest
-    environment: preprod
+    environment: prod
     steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: preprod
+          ref: prod
 
       - name: Google Auth
         id: auth
