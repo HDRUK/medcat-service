@@ -1,1 +1,1 @@
-## gateway-2-medcat.
+## gateway-2-medcat
