@@ -40,6 +40,13 @@ jobs:
         id: getversion
         run: echo "version=$(sed -n 's/^MEDCAT_TAG=\(.*\)/\1/p' < medcat_versions.yml)" >> $GITHUB_OUTPUT
 
+      - name: Create the release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          automatic_release_tag: '${{ steps.getversion.outputs.version }}'
+          prerelease: false
+
       - name: Deploy to Cloud Run
         uses: actions-hub/gcloud@master
         id: deploy
