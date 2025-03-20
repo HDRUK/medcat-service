@@ -2,4 +2,4 @@
 [![Support](https://img.shields.io/badge/Supported%20By-HDR%20UK-blue)](https://hdruk.ac.uk)
 
 # HDR UK Gateway Medcat Service
-This repo is a minimal config around the existing medcat service - published by cogstack: https://github.com/CogStack/MedCATservice
+This repo is a minimal config around the existing MedCat service published by cogstack: https://github.com/CogStack/MedCATservice
