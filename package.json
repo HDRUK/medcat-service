@@ -1,6 +1,6 @@
 {
   "name": "medcat-service",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "scripts": {
     "semi": "npx semantic-release"
