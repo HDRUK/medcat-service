@@ -84,12 +84,12 @@ jobs:
       - name: Read MEDCAT VERSION
         id: getversion
         run: | 
-          sed -n 's/^appVersion:\(.*\)/\1/p' < "chart/gateway-medcat/Chart" > "version"
+          sed -n 's/^appVersion:\(.*\)/\1/p' < "chart/gateway-medcat/Chart.yaml" > "version"
           echo "version=$(sed 's/.*\"\(.*\)\".*/\1/g' "version")" >> "$GITHUB_OUTPUT"
 
       - name: Google Auth
         id: auth
-        uses: "google-github-actions/auth@v4"
+        uses: "google-github-actions/auth@v2"
         with:
           token_format: "access_token"
           workload_identity_provider: "${{ secrets.WIF_PROVIDER }}"
