@@ -79,8 +79,8 @@ jobs:
 
       - name: Read BASE IMAGE VERSION file
         id: getappversion
-        run: echo "appversion=$(sed -n 's/^MEDCAT_BASE_IMAGE_VERSION=\(.*\)/\1/p' < medcat_versions.yml)" >> $GITHUB_OUTPUT
-
+        run: echo "appversion=$(sed -n 's/^MEDCAT_BASE_IMAGE_VERSION=\(.*\)/\1/p' < medcat_versions.yml)" >> "$GITHUB_OUTPUT"
+        
       - name: Read MEDCAT VERSION
         id: getversion
         run: | 
@@ -97,7 +97,7 @@ jobs:
 
       - name: "Set up Cloud SDK"
         id: setupsdk
-        uses: "google-github-actions/setup-gcloud@v1"
+        uses: "google-github-actions/setup-gcloud@v2"
         with:
           version: ">= 363.0.0"
 
