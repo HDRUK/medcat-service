@@ -16,7 +16,7 @@ jobs:
       - name: Read BASE IMAGE VERSION file
         id: getappversion
         run: |
-          echo "appversion=$(sed -n 's/^MEDCAT_BASE_IMAGE_VERSION=\(.*\)/\1/p' < medcat_versions.yml)" >> "$GITHUB_OUTPUT"
+          echo "appversion=$(sed -n 's/^MEDCAT_BASE_IMAGE_VERSION=\(.*\)/\1/p' medcat_versions.yml)" >> "$GITHUB_OUTPUT"
 
       - id: args
         run: |
