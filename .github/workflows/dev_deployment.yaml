@@ -33,6 +33,7 @@ jobs:
       chart_path: chart/gateway-medcat/Chart.yaml
       environment: dev
       docker_build_args: ${{ needs.setup.outputs.docker_build_args }}
+      download_models: true
     secrets: inherit
 
   deploy:
