@@ -7,29 +7,14 @@ on:
       - "release/*"
 
 jobs:
-  setup-preprod:
+  setup:
     runs-on: ubuntu-latest
-    environment: preprod
+    environment: release
     outputs:
       docker_build_args: ${{ steps.args.outputs.docker_build_args }}
     steps:
-      - name: Read BASE IMAGE VERSION file
-        id: getappversion
-        run: |
-          echo "appversion=$(sed -n 's/^MEDCAT_BASE_IMAGE_VERSION=\(.*\)/\1/p' < medcat_versions.yml)" >> "$GITHUB_OUTPUT"
-
-      - id: args
-        run: |
-          ARGS=""
-          ARGS+="--build-arg MEDCAT_BASE_IMAGE_VERSION=${{ steps.getappversion.outputs.appversion }} "
-          echo "docker_build_args=$ARGS" >> "$GITHUB_OUTPUT"
-
-  setup-prod:
-    runs-on: ubuntu-latest
-    environment: prod
-    outputs:
-      docker_build_args: ${{ steps.args.outputs.docker_build_args }}
-    steps:
+      - uses: actions/checkout@v6
+      
       - name: Read BASE IMAGE VERSION file
         id: getappversion
         run: |
@@ -41,20 +26,11 @@ jobs:
           ARGS+="--build-arg MEDCAT_BASE_IMAGE_VERSION=${{ steps.getappversion.outputs.appversion }} "
           echo "docker_build_args=$ARGS" >> "$GITHUB_OUTPUT"
 
-  build-preprod:
-    needs: setup-preprod
+  build:
+    needs: setup
     uses: HDRUK/github-actions-templates/.github/workflows/docker-build.yaml@main
     with:
-      environment: preprod
-      docker_build_args: ${{ needs.setup-preprod.outputs.docker_build_args }}
-      chart_path: chart/gateway-medcat/Chart.yaml
-    secrets: inherit
-
-  build-prod:
-    needs: setup-prod
-    uses: HDRUK/github-actions-templates/.github/workflows/docker-build.yaml@main
-    with:
-      environment: prod
-      docker_build_args: ${{ needs.setup-prod.outputs.docker_build_args }}
+      environment: release
+      docker_build_args: ${{ needs.setup.outputs.docker_build_args }}
       chart_path: chart/gateway-medcat/Chart.yaml
     secrets: inherit
