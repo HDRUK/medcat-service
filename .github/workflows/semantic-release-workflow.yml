@@ -1,25 +1,30 @@
-name: Build and deploy to DEV
-run-name:  ${{ github.actor }} triggered deploy to DEV pipeline
+name: Semantic Release workflow
 
 on:
   push:
     branches:
-      - dev
+      - main
 
 jobs:
+  semantic:
+    uses: HDRUK/github-actions-templates/.github/workflows/semantic.yaml@main
+    with:
+      chart_path: chart/gateway-medcat/Chart.yaml
+    secrets: inherit
+
   setup:
     runs-on: ubuntu-latest
-    environment: dev
+    environment: release
     outputs:
       docker_build_args: ${{ steps.args.outputs.docker_build_args }}
     steps:
       - uses: actions/checkout@v6
-
+      
       - name: Read BASE IMAGE VERSION file
         id: getappversion
         run: |
-          echo "appversion=$(sed -n 's/^MEDCAT_BASE_IMAGE_VERSION=\(.*\)/\1/p' medcat_versions.yml)" >> "$GITHUB_OUTPUT"
-
+          echo "appversion=$(sed -n 's/^MEDCAT_BASE_IMAGE_VERSION=\(.*\)/\1/p' < medcat_versions.yml)" >> "$GITHUB_OUTPUT"
+      
       - id: args
         run: |
           ARGS=""
@@ -30,17 +35,8 @@ jobs:
     needs: setup
     uses: HDRUK/github-actions-templates/.github/workflows/docker-build.yaml@main
     with:
-      chart_path: chart/gateway-medcat/Chart.yaml
-      environment: dev
+      environment: release
       docker_build_args: ${{ needs.setup.outputs.docker_build_args }}
-      download_models: true
-    secrets: inherit
-
-  deploy:
-    needs: build
-    uses: HDRUK/github-actions-templates/.github/workflows/deploy-release.yml@main
-    with:
-      env: dev
       chart_path: chart/gateway-medcat/Chart.yaml
-      git_ref: dev
+      download_models: true
     secrets: inherit
