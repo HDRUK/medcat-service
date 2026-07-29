@@ -15,11 +15,12 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     environment: release
+    needs: semantic
     outputs:
       docker_build_args: ${{ steps.args.outputs.docker_build_args }}
     steps:
       - uses: actions/checkout@v6
-      
+
       - name: Read BASE IMAGE VERSION file
         id: getappversion
         run: |
