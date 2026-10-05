@@ -1,3 +1,9 @@
+## [1.1.1](https://github.com/HDRUK/medcat-service/compare/v1.1.0...v1.1.1) (2026-10-05)
+
+### 🐛 Bug Fixes
+
+* **GAT-8642:** updated Base OS version (#49) ([881e08b](https://github.com/HDRUK/medcat-service/commit/881e08bd8ef80f36307492023cae19037f3e9573)), closes [GAT-8642](undefinedGAT-8642)
+
 ## [1.1.0](https://github.com/HDRUK/medcat-service/compare/v1.0.4...v1.1.0) (2026-07-24)
 
 ### ✨ Features
